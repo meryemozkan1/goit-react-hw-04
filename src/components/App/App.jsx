@@ -1,21 +1,18 @@
+// src/components/App/App.jsx
 import { useState, useEffect } from "react";
-import Modal from "react-modal";
 import { Toaster } from "react-hot-toast";
 
-// Klasör derinlikleri görseldeki ağaca göre (../../) olarak düzeltildi
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import Loader from "../Loader/Loader";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 
-// Unsplash API fonksiyonu import edildi (src altındaki unsplash-api.js dosyası için)
+// Yeni oluşturduğumuz ImageModal bileşenini import ediyoruz
+import ImageModal from "../ImageModal/ImageModal";
+
 import { fetchImages } from "../../unsplash-api";
-
 import css from "./App.module.css";
-
-// Modal erişilebilirlik ayarı
-Modal.setAppElement("#root");
 
 export default function App() {
   const [images, setImages] = useState([]);
@@ -25,7 +22,7 @@ export default function App() {
   const [isError, setIsError] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   
-  // Modal State'leri
+  // Modal State'leri aynen kalıyor
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalUrl, setModalUrl] = useState("");
   const [modalAlt, setModalAlt] = useState("");
@@ -89,17 +86,13 @@ export default function App() {
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
 
-      {/* React Modal Bileşeni */}
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        className={css.modal}
-        overlayClassName={css.overlay}
-      >
-        <div className={css.modalContent}>
-          <img src={modalUrl} alt={modalAlt} className={css.modalImage} />
-        </div>
-      </Modal>
+      {/* Eski ham Modal yerine yeni temiz ImageModal bileşenini çağırıyoruz */}
+      <ImageModal 
+        isOpen={modalIsOpen} 
+        onClose={closeModal} 
+        src={modalUrl} 
+        alt={modalAlt} 
+      />
     </div>
   );
 }

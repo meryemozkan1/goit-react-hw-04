@@ -8,40 +8,4 @@
 }
 
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1200;
-}
 
-.modal {
-  background: none;
-  border: none;
-  outline: none;
-  max-width: 90vw;
-  max-height: 90vh;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modalContent {
-  position: relative;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
-.modalImage {
-  display: block;
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-}
